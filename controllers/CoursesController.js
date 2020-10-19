@@ -13,7 +13,7 @@ class CoursesController extends require('./Controller') {
             this.response.JSON(this.coursesRepository.getAll());
     }
     post(course){  
-        // todo : validate cour before insertion
+        // todo : validate course before insertion
         // todo : avoid duplicates
         let newCourse = this.coursesRepository.add(course);
         if (newCourse) 
@@ -22,7 +22,7 @@ class CoursesController extends require('./Controller') {
             this.response.internalError();
     }
     put(course){
-        // todo : validate contact before updating
+        // todo : validate course before updating
         if (this.coursesRepository.update(course))
             this.response.ok();
         else 

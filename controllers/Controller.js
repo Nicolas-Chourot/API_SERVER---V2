@@ -26,6 +26,7 @@ class Controller {
         }
         return true;
     }
+    
     getQueryStringParams(){
         let queryString = utilities.getQueryString(this.req.url);
         if (queryString != undefined) {
