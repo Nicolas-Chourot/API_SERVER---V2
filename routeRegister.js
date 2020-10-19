@@ -7,9 +7,9 @@ module.exports =
 class RouteRegister{
     static add(method, modelName, actionName="index"){
         routes.push(
-            {   method: method, 
-                modelName: modelName, 
-                actionName: actionName
+            {   method, 
+                modelName, 
+                actionName
             });
     }
     static find(req) {

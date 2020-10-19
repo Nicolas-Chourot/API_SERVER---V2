@@ -8,7 +8,6 @@ class Response {
         this.urlBase = this.makeUrlBase(url);
     }
     makeCacheableEndpoint(url){
-        //return "";
         if (url != "") {
             let path = utilities.decomposePath(url);
             if (path.id == undefined)

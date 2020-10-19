@@ -61,6 +61,7 @@ exports.dispatch_TOKEN_EndPoint = function(req, res){
 // {method, ControllerName, Action}
 exports.dispatch_Registered_EndPoint = function(req, res){
     const RouteRegister = require('./routeRegister');
+    let response = new Response(res);
     let route = RouteRegister.find(req);
     if (route != null) {
         try{

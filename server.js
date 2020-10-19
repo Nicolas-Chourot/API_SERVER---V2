@@ -23,14 +23,14 @@ function CORS_Prefligth(req, res){
     // request not handled
     return false;
 }
-function notFound(res) {
+function responseNotFound(res) {
     res.writeHead(404, {'content-type':'text/plain'});
     res.end();
 }
 function API_Endpoint(req, res) {
     return require('./router').dispatch_API_EndPoint(req, res);
 }
-function TOKEN_Endpoint(req, res) {
+function token_Endpoint(req, res) {
     return require('./router').dispatch_TOKEN_EndPoint(req, res);
 }
 function registered_Enpoint(req, res) {
@@ -62,7 +62,7 @@ function setRequestProcessStartTime() {
     requestProcessStartTime = process.hrtime();
 }
 
-function showRequestProcessStartTime() {
+function showRequestProcessTime() {
     let requestProcessEndTime = process.hrtime(requestProcessStartTime);
     console.log('Request process time: %ds %dms', requestProcessEndTime[0], requestProcessEndTime[1] / 1000000);
 }
@@ -73,15 +73,15 @@ require('http').createServer((req, res) => {
     console.log('<--------------------------------------------------------');
     ShowRequestInfo(req);
     setRequestProcessStartTime();
-    // Middlewares pipeline
     AccessControlConfig(res);
+    // Middlewares pipeline
     if (!CORS_Prefligth(req, res))
         if (!cached_Endpoint(req, res))
-            if (!TOKEN_Endpoint(req, res))
+            if (!token_Endpoint(req, res))
                 if (!registered_Enpoint(req, res))
                     if (!API_Endpoint(req, res))
                         // do something else with request
-                        notFound(res);
-    showRequestProcessStartTime();
+                        responseNotFound(res);
+    showRequestProcessTime();
     console.log('-------------------------------------------------------->');
 }).listen(PORT, () => console.log(`HTTP Server running on port ${PORT}...`));

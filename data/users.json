@@ -33,5 +33,12 @@
         "Email": "Kyle.Ross@clg.qc.ca",
         "Password": "Password_123",
         "Created": 1601564566
+    },
+    {
+        "Id": 6,
+        "Name": "Rachid Kadouche",
+        "Email": "Rachid.Kadouche@clg.qc.ca",
+        "Password": "Password_123",
+        "Created": 1603112394
     }
 ]

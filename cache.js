@@ -1,7 +1,8 @@
 const utilities = require('./utilities');
+const serverVariables = require("./serverVariables");
 let cache = [];
 
-let CacheExpirationTime = utilities.getServerVariable("main.cache.expirationTime");
+let CacheExpirationTime = serverVariables.get("main.cache.expirationTime");
 
 class Cache {
    
@@ -54,5 +55,6 @@ class Cache {
     }
 }
 
+// periodic cleaning of expired cached GET request
 setInterval(Cache.flushExpired, CacheExpirationTime);
 module.exports = Cache;

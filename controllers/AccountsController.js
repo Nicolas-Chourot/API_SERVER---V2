@@ -10,17 +10,24 @@ class AccountsController extends require('./Controller') {
         this.usersRepository = new Repository('Users');
     }
 
-    // todo mask password
+    // list of users with masked password
     index(id) {
-            if(!isNaN(id)) {
-                let user =  this.usersRepository.get(id);
-                if (user != null)
-                    user = 
-                this.response.JSON(this.usersRepository.get(id));
+        if(!isNaN(id)) {
+            let user =  this.usersRepository.get(id);
+            if (user != null) {
+                let userClone = {...user};
+                userClone.Password = "********";
+                this.response.JSON(userClone);
             }
-            else {
-                this.response.JSON(this.usersRepository.getAll());
+        }
+        else {
+            let users = this.usersRepository.getAll();
+            let usersClone = users.map(user => ({...user}));
+            for(let user of usersClone) {
+                user.Password = "********";
             }
+            this.response.JSON(usersClone);
+        }
     }
 
     // POST: /token body payload[{"Email": "...", "Password": "...", "grant-type":"password"}]
@@ -45,7 +52,8 @@ class AccountsController extends require('./Controller') {
         if (User.valid(user)) {
             // avoid duplicates Email
             if (this.usersRepository.findByField('Email', user.Email) == null) {
-                let newUser = this.usersRepository.add(user);
+                // take a clone of the newly inserted user
+                let newUser = {...this.usersRepository.add(user)};
                 if (newUser) {
                     // mask password in the json object response
                     newUser.Password = "********";

@@ -15,7 +15,6 @@ exports.deleteByIndex = (array, indexToDelete) => {
 }
 
 exports.removeQueryString = removeQueryString;
-
 function removeQueryString(url){
     let queryStringMarkerPos = url.indexOf('?');
     if (queryStringMarkerPos > -1)
@@ -24,12 +23,12 @@ function removeQueryString(url){
 }
 
 exports.getQueryString = getQueryString;
-
 function getQueryString(url){
     if (url.indexOf('?') > -1)
         return url.substring(url.indexOf('?'),url.length);
     return undefined;
 }
+
 // this function decompose url path
 // either
 // MVC pattern /controller/action/id?querystring
@@ -70,10 +69,4 @@ exports.decomposePath = (url) => {
         }
    
     return { isAPI, model, action, id, queryString };
-}
-
-exports.getServerVariable = (variableName) => {
-    var propertiesReader = require('properties-reader');
-    var properties = propertiesReader('./serverVariables.ini');
-    return properties.get(variableName);
 }

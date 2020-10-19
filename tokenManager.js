@@ -1,4 +1,5 @@
 const utilities = require('./utilities');
+const serverVariables = require("./serverVariables");
 function makeToken(text){
     const crypto = require('crypto'); 
     const algorithm = 'aes-256-cbc'; 
@@ -19,7 +20,7 @@ function makeToken(text){
 const Repository = require('./models/Repository');
 let repository = new Repository('Tokens');
 
-let tokenLifeDuration = utilities.getServerVariable("main.token.lifeDuration");
+let tokenLifeDuration = serverVariables.get("main.token.lifeDuration");
 
 class TokenManager{
     static create(email) {
@@ -63,5 +64,7 @@ class TokenManager{
         return false;
     }
 }
+
+// periodic cleaning of expired tokens
 setInterval(TokenManager.cleanTokens, tokenLifeDuration);
 module.exports = TokenManager;
