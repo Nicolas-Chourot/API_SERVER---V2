@@ -43,7 +43,7 @@ exports.dispatch_TOKEN_EndPoint = function(req, res){
             return true;
 
         } catch(error){
-            // catch likely called because of missing controller class
+            // catch likely called because of missing AccountsController class
             // i.e. require('./' + controllerName) failed
             // but also any unhandled error...
             console.log('endpoint not found');

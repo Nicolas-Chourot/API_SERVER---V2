@@ -10,7 +10,7 @@ class Response {
     makeCacheableEndpoint(url){
         if (url != "") {
             let path = utilities.decomposePath(url);
-            if (path.id == undefined)
+            if (path.isAPI && path.id == undefined)
                 return (path.isAPI ? "/api":"") + "/" + path.model + (path.action != undefined ? "/" + path.action : "") + (path.queryString != undefined ? path.queryString : "");
         }
         // not cacheable

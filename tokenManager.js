@@ -1,5 +1,3 @@
-const utilities = require('./utilities');
-const serverVariables = require("./serverVariables");
 function makeToken(text){
     const crypto = require('crypto'); 
     const algorithm = 'aes-256-cbc'; 
@@ -16,7 +14,8 @@ function makeToken(text){
     } 
     return encrypt(text).encryptedData; 
 }
-
+const utilities = require('./utilities');
+const serverVariables = require("./serverVariables");
 const Repository = require('./models/Repository');
 let repository = new Repository('Tokens');
 

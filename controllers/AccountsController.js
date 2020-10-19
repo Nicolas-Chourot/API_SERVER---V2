@@ -32,7 +32,7 @@ class AccountsController extends require('./Controller') {
 
     // POST: /token body payload[{"Email": "...", "Password": "...", "grant-type":"password"}]
     login(loginInfo) {
-        // to do assure that grant-type is present in the reuqest header
+        // to do assure that grant-type is present in the request header
         let user =  this.usersRepository.findByField("Email", loginInfo.Email);
         if (user != null){
             if (user.Password == loginInfo.Password) {
