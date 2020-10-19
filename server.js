@@ -33,6 +33,11 @@ function API_Endpoint(req, res) {
 function token_Endpoint(req, res) {
     return require('./router').dispatch_TOKEN_EndPoint(req, res);
 }
+function routeConfig() {
+    const RouteRegister = require('./routeRegister');
+    RouteRegister.add('GET','accounts');
+    RouteRegister.add('POST','accounts','register');
+}
 function registered_Enpoint(req, res) {
     return require('./router').dispatch_Registered_EndPoint(req, res);
 }
@@ -48,11 +53,7 @@ function cached_Endpoint(req, res){
     }
     return false;
 }
-function routeConfig() {
-    const RouteRegister = require('./routeRegister');
-    RouteRegister.add('GET','accounts');
-    RouteRegister.add('POST','accounts','register');
-}
+
 const process = require('process');
 const PORT = process.env.PORT || 5000;
 

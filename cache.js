@@ -8,7 +8,7 @@ class Cache {
    
     static add(url, content) {
         if (url != "") {
-            cache.push({url: url, content: content, expireIn: utilities.nowInSeconds() + CacheExpirationTime});
+            cache.push({url, content, expireIn: utilities.nowInSeconds() + CacheExpirationTime});
             console.log("ADDED IN CACHE");
         }
     }

@@ -26,7 +26,9 @@ class Controller {
         }
         return true;
     }
-    
+    requestActionAuthorized() {
+        return TokenManager.requestAuthorized(this.req);
+    }
     getQueryStringParams(){
         let queryString = utilities.getQueryString(this.req.url);
         if (queryString != undefined) {

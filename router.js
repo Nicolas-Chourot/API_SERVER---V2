@@ -134,6 +134,7 @@ exports.dispatch_API_EndPoint = function(req, res){
 
     if (path.id != undefined) {
         if (isNaN(path.id)) {
+            response.badRequest();
             // request not consumed
             return false;
         }
@@ -149,7 +150,6 @@ exports.dispatch_API_EndPoint = function(req, res){
             // instanciate the controller       
             let controller =  new Controller(req, res);
             
-
             if (!controller.requestAuthorized()){
                 console.log('unauthorized access!');
                 response.unAuthorized();
@@ -177,10 +177,7 @@ exports.dispatch_API_EndPoint = function(req, res){
                 return true;
             }
             if (req.method === 'DELETE') {
-                if (!isNaN(id))
-                    controller.remove(id);
-                else 
-                    response.badRequest();
+                controller.remove(id);
                 // request consumed
                 return true;
             }

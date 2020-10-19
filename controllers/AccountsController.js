@@ -67,10 +67,12 @@ class AccountsController extends require('./Controller') {
     }
     // todo
     change(user) {
-        this.response.notImplemented();
+        if (this.requestActionAuthorized())
+            this.response.notImplemented();
     }
     // todo
     delete(id) {
-        this.response.notImplemented();
+        if (this.requestActionAuthorized())
+            this.response.notImplemented();
     }
 }

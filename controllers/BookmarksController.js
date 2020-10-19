@@ -31,8 +31,7 @@ class BookmarksController extends require('./Controller') {
         this.res.writeHead(200, {'content-type':'text/html'});
         this.res.end(this.queryStringParamsList());
     }
-
-    
+  
     // GET: api/bookmarks
     // GET: api/bookmarks?sort=key&key=value....
     // GET: api/bookmarks/{id}
