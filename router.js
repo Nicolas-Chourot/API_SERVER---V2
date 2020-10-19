@@ -27,21 +27,16 @@ function processJSONBody(req, res, controller, methodName) {
 exports.dispatch_TOKEN_EndPoint = function(req, res){
     let response = new Response(res);
     let url = utilities.removeQueryString(req.url);
-    if (url =='/token'){
+    if (url =='/token' && req.method == "POST") {
         try{
             // dynamically import the targeted controller
             // if the controller does not exist the catch section will be called
             const Controller = require('./controllers/AccountsController');
             // instanciate the controller       
             let controller =  new Controller(req, res);
-            if (req.method === 'POST')
-                processJSONBody(req, res, controller, 'login');
-            else {
-                response.notFound();
-            }
+            processJSONBody(req, res, controller, 'login');
             // request consumed
             return true;
-
         } catch(error){
             // catch likely called because of missing AccountsController class
             // i.e. require('./' + controllerName) failed
