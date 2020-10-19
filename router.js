@@ -1,6 +1,5 @@
 const utilities = require('./utilities');
 const Response = require("./response");
-const Endpoints = require('./endpoints');
 
 // this function extract the JSON data from the body of the request
 // and and pass it to controller Method
@@ -60,8 +59,8 @@ exports.dispatch_TOKEN_EndPoint = function(req, res){
 }
 
 // {method, ControllerName, Action}
-const RouteRegister = require('./routeRegister');
 exports.dispatch_Registered_EndPoint = function(req, res){
+    const RouteRegister = require('./routeRegister');
     let route = RouteRegister.find(req);
     if (route != null) {
         try{
@@ -96,13 +95,6 @@ exports.dispatch_Registered_EndPoint = function(req, res){
 
 }
 
-function makeControllerName(modelName) {
-    if (modelName != undefined)
-        // by convention controller name -> NameController
-        return utilities.capitalizeFirstLetter(modelName) + 'Controller';
-    return undefined;
-}
-
 //////////////////////////////////////////////////////////////////////
 // dispatch_API_EndPoint middleware
 // parse the req.url that must have the following format:
@@ -121,7 +113,15 @@ function makeControllerName(modelName) {
 /////////////////////////////////////////////////////////////////////
 exports.dispatch_API_EndPoint = function(req, res){
     
+    function makeControllerName(modelName) {
+        if (modelName != undefined)
+            // by convention controller name -> NameController
+            return utilities.capitalizeFirstLetter(modelName) + 'Controller';
+        return undefined;
+    }
+
     if (req.url == "/api"){
+        const Endpoints = require('./endpoints');
         Endpoints.list(res);
         // request consumed
         return true;
