@@ -11,7 +11,7 @@ class Response {
         if (url != "") {
             let path = utilities.decomposePath(url);
             if (path.isAPI && path.id == undefined)
-                return (path.isAPI ? "/api":"") + "/" + path.model + (path.action != undefined ? "/" + path.action : "") + (path.queryString != undefined ? path.queryString : "");
+                return "/api/" + path.model + (path.queryString != undefined ? path.queryString : "");
         }
         // not cacheable
         return "";
