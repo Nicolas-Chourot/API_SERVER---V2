@@ -71,7 +71,7 @@ class AccountsController extends require('./Controller') {
             this.response.notImplemented();
     }
     // todo
-    delete(id) {
+    remove(id) {
         if (this.requestActionAuthorized())
             this.response.notImplemented();
     }

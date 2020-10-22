@@ -46,7 +46,7 @@ class Cache {
         let now = utilities.nowInSeconds();
         for(let endpoint of cache){
             if (endpoint.expireIn < now) {
-                console.log("Cached ", endpoint.url + " experired");
+                console.log("Cached ", endpoint.url + " expired");
                 indexToDelete.push(index);
             }
             index ++;
