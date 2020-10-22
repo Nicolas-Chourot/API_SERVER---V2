@@ -65,6 +65,14 @@ exports.dispatch_Registered_EndPoint = function(req, res){
             const Controller = require('./controllers/' + route.modelName + "Controller");
             // instanciate the controller       
             let controller =  new Controller(req, res);
+
+            if (!controller.requestAuthorized()){
+                console.log('unauthorized access!');
+                response.unAuthorized();
+                // request consumed
+                return true;
+            }
+            
             if (route.method === 'POST' || route.method === 'PUT')
                 processJSONBody(req, res, controller, route.actionName);
             else {
