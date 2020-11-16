@@ -34,9 +34,12 @@ class AccountsController extends require('./Controller') {
     login(loginInfo) {
         // to do assure that grant-type is present in the request header
         let user =  this.usersRepository.findByField("Email", loginInfo.Email);
-        if (user != null){
+        if (user != null) {
             if (user.Password == loginInfo.Password) {
                 let newToken = TokenManager.create(user.Email);
+                newToken["UserId"] = user.Id;
+                newToken["UserEmail"] = user.Email;
+                newToken["UserName"] = user.Name;
                 console.log(newToken)
                 this.response.JSON(newToken);
             } else

@@ -37,7 +37,7 @@ class TokenManager{
         let indexToDelete = [];
         for(let token of tokens) {
             if (token.Expires_in < now) {
-                console.log("Access token " + token.Access_token + " expired")
+                console.log("Access token " + token.Access_token + " expired");
                 indexToDelete.push(index);
             }
             index ++;

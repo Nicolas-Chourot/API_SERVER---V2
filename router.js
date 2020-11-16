@@ -27,7 +27,7 @@ function processJSONBody(req, res, controller, methodName) {
 exports.dispatch_TOKEN_EndPoint = function(req, res){
     let response = new Response(res);
     let url = utilities.removeQueryString(req.url);
-    if (url =='/token' && req.method == "POST") {
+    if (url =='/token' && req.method == "POST") {""
         try{
             // dynamically import the targeted controller
             // if the controller does not exist the catch section will be called
@@ -62,7 +62,7 @@ exports.dispatch_Registered_EndPoint = function(req, res){
         try{
             // dynamically import the targeted controller
             // if the controllerName does not exist the catch section will be called
-            const Controller = require('./controllers/' + route.modelName + "Controller");
+            const Controller = require('./controllers/' + utilities.capitalizeFirstLetter(route.modelName) + "Controller");
             // instanciate the controller       
             let controller =  new Controller(req, res);
 
@@ -142,7 +142,6 @@ exports.dispatch_API_EndPoint = function(req, res){
             return false;
         }
     }
-
 
     if (controllerName != undefined) {
         let response = new Response(res);
